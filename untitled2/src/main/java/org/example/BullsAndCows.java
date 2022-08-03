@@ -9,31 +9,22 @@ public class BullsAndCows {
     static int q = 0;
     static int lowerBorder;
     static int upperBorder;
-    static int size = 4;
+    static int size;
     static int bullsCount = 0;
     static int cowsCount = 0;
     static ArrayList<Integer> puzzle = new ArrayList<Integer>();
     static ArrayList<Integer> variant = new ArrayList<Integer>(size);
 
-    public static void Check() {
+    public static void StartGame() {
 
-//        CreateRules();
-//        GuessNumbers(size,lowerBorder,upperBorder);
-        GuessNumbers(size,0,9);
-
+        CreateRules();
+        System.out.println("Ok. Ya zagadal chisla. Poprobyi ygadat'");
+        GuessNumbers(size,lowerBorder,upperBorder);
         do {
-            System.out.println("Vvedite svoi variant");
-            if (q == 0) {
-                ReadFirstNums(size);
-            }else {ReadSecondNums(size);}
-            System.out.println(puzzle);
-            System.out.println(variant);
+            System.out.println("Vvedi svoi variant");
+            ReadNums(size);
+            System.out.println("Tvoya posledovatel'nost' - " + variant);
             CheckVariant();
-            if (bullsCount == size){
-                System.out.println("Moi pozdravleniya. Ti nashel vseh bikov!!!");
-            } else {
-                System.out.println("Blizko. Try again!");
-            }
         } while (bullsCount != size);
     }
 
@@ -52,41 +43,39 @@ public class BullsAndCows {
     }
 
     public static void CreateRules(){
-        System.out.println("Vvedite min chislo");
+        System.out.println("Vvedi min chislo");
         lowerBorder = in.nextInt();
-        System.out.println("Vvedite max chislo");
+        System.out.println("Vvedi max chislo");
         upperBorder = in.nextInt();
         System.out.println("Skolko chisel zagadat'?");
         size = in.nextInt();
     }
 
-    public static void ReadFirstNums(int size){
+    public static void ReadNums(int size){
 
+        variant.clear();
         for (int i = 0; i < size; i++) {
-            System.out.println("Vvedite predpolagaemoe chislo #" + (i+1));
+            System.out.println("Vvedi predpolagaemoe chislo #" + (i+1));
             variant.add(in.nextInt());
             q++;
-        }
-    }
-
-    public static void ReadSecondNums(int size){
-
-        for (int i = 0; i < size; i++) {
-            System.out.println("Vvedite predpolagaemoe chislo #" + (i+1));
-            variant.set(i, in.nextInt());
         }
     }
 
     public static void CheckVariant(){
         bullsCount = 0;
         cowsCount = 0;
-        for (int i : variant) {
-            if (puzzle.get(i) == variant.get(i)){
-                bullsCount ++;
-            } else if (puzzle.contains(variant.get(i))) {
-                cowsCount ++;
+        for (int i = 0; i < size; i++) {
+                if (puzzle.get(i) == variant.get(i)){
+                    bullsCount ++;
+                } else if (puzzle.contains(variant.get(i))) {
+                    cowsCount ++;
+                }
             }
-        }
         System.out.println("Bikov - " + bullsCount + ", korov - " + cowsCount);
+        if (bullsCount == size){
+            System.out.println("Moi pozdravleniya. Ti nashel vseh bikov!!!");
+        } else {
+            System.out.println("Blizko. Try again!");
+        }
     }
 }
