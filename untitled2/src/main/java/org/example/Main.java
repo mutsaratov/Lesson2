@@ -6,5 +6,6 @@ public class Main {
         //LuckyCheck.check(123321);
         //ZeroCount.count("00000000010002030050000000");
         //BullsAndCows.StartGame();
+        StringDegree.getDegree();
     }
 }
