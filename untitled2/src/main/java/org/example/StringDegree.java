@@ -36,7 +36,7 @@ public class StringDegree {
             newString = string.toLowerCase().repeat((int)degree);
             System.out.println(newString);
         } else if (degree < 0) {
-            root = (int) Math.round(Math.pow(string.length(), 1.0/(Math.abs((int)degree))));
+            root = (int) Math.ceil(Math.pow(string.length(), 1.0/(Math.abs((int)degree))));
             rootOfString = string.toLowerCase().substring(0, root);
             System.out.println(rootOfString);
         } else {
