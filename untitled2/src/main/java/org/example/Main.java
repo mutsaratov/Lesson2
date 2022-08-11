@@ -7,6 +7,6 @@ public class Main {
         //ZeroCount.count("00000000010002030050000000");
         //BullsAndCows.StartGame();
         //StringDegree.getDegree();
-        qwe.Qwe();
+        Unzip.Unzip("35A4B7D");
     }
 }
