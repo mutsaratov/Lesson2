@@ -16,31 +16,43 @@ public class StringDegree {
         }
 
         System.out.println("Vvedite stepen'.");
-        double degree = in.nextDouble();
+        int degree = in.nextInt();
 
         while (degree % 1 != 0 || degree == 0 || Math.abs(degree) >= 100001){
             System.out.println("Stepen' ne sootvetstvuet trebovaniam. Vvedite drygyu stepen'.");
-            degree = in.nextDouble();
+            degree = in.nextInt();
         }
 
         int root;
-        String rootOfString;
-//        System.out.println(root);
-//        if (root % 1 == 0 ) {
-//            System.out.println(root);
-//        } else {
-//            System.out.println("Ne norm");
-//        }
+        int length;
+        int c = 0;
         String newString;
         if (degree > 0) {
-            newString = string.toLowerCase().repeat((int)degree);
-            System.out.println(newString);
+            newString = string.toLowerCase().repeat(degree);
+            if (newString.length()>1023){
+                System.out.println(newString.substring(0,1023));
+            } else {
+                System.out.println(newString);
+            }
         } else if (degree < 0) {
-            root = (int) Math.ceil(Math.pow(string.length(), 1.0/(Math.abs((int)degree))));
-            rootOfString = string.toLowerCase().substring(0, root);
-            System.out.println(rootOfString);
+            root = Math.abs(degree);
+            length = string.length()/root;
+            if (string.length() % root == 0){
+                for (int i = 0; i < root-1; i++) {
+                    if (!string.substring(i*length, (i+1)*length).equals(string.substring((i+1)*length, (i+2)*length))){
+                        c++;
+                    } else {
+                        System.out.println(string.substring(0,length));
+                    }
+                }
+                if (c > 0){
+                    System.out.println("NO SOLUTION");
+                }
+            } else {
+                System.out.println("NO SOLUTION");
+            }
         } else {
-            System.out.println("Stepen' ravna 0");
+            System.out.println("NO SOLUTION");
         }
     }
 }
