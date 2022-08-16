@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Arrays;
 
-public class PolindromCheck {
+public class PalindromeCheck {
     public static void check(String string){
         char[] arr1 = new char[string.length()];
         char[] arr2 = new char[string.length()];
